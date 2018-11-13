@@ -4,6 +4,8 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using CarouselView.FormsPlugin.iOS;
+using FFImageLoading.Forms.Platform;
 
 namespace XamlTest.iOS
 {
@@ -23,7 +25,13 @@ namespace XamlTest.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            
+            CarouselViewRenderer.Init ();
+            CachedImageRenderer.Init();
+
+			LoadApplication(new App());
+
+
 
             return base.FinishedLaunching(app, options);
         }
