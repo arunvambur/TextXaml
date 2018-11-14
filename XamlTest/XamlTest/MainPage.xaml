@@ -5,6 +5,28 @@
              x:Class="XamlTest.MainPage"
              xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:Double" x:Key="ButtonSize">
+                <On Platform="Android" Value="10" />
+                <On Platform="iOS" Value="12" />
+            </OnPlatform>
+
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="{DynamicResource ButtonSize}" />
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="HasShadow" Value="False"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
         
@@ -15,21 +37,18 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         
-         <!--Image Grid.Row="0" Grid.Column="0" Source="{local:ImageResource  XamlTest.Images.TopImage.png}" Aspect="Fill"/-->
-        
         <cv:CarouselViewControl x:Name="carousel" Grid.Row="0" Grid.Column="0"
-        ShowIndicators="true"
-        Orientation="Horizontal">
-
-        <cv:CarouselViewControl.ItemsSource>
-           <x:Array Type="{x:Type View}">
-                <ffimageloading:CachedImage DownsampleToViewSize="true" Source = "TopImage.jpg" Aspect="AspectFill" />
-                <ffimageloading:CachedImage DownsampleToViewSize="true" Source = "c2.jpg" Aspect="AspectFill" />
-                <ffimageloading:CachedImage DownsampleToViewSize="true" Source = "c3.jpg" Aspect="AspectFill" />
-           </x:Array>
-        </cv:CarouselViewControl.ItemsSource>
-
-    </cv:CarouselViewControl>
+                                ShowIndicators="true"
+                                Orientation="Horizontal">
+                                
+            <cv:CarouselViewControl.ItemsSource>
+                <x:Array Type="{x:Type View}">
+                    <ffimageloading:CachedImage DownsampleToViewSize="true" Source = "TopImage.jpg" Aspect="AspectFill" />
+                    <ffimageloading:CachedImage DownsampleToViewSize="true" Source = "c2.jpg" Aspect="AspectFill" />
+                    <ffimageloading:CachedImage DownsampleToViewSize="true" Source = "c3.jpg" Aspect="AspectFill" />
+               </x:Array>
+            </cv:CarouselViewControl.ItemsSource>
+        </cv:CarouselViewControl>
 
         <StackLayout Grid.Column="0" Grid.Row="1" Padding="10,5,10,5" Spacing="5" BackgroundColor="White">
             <Label Text="Nice Addidas Sneakers" FontAttributes="Bold" FontSize="Small" TextColor="Black"/>
@@ -40,7 +59,7 @@
         </StackLayout>
         
         <StackLayout Grid.Column="0" Grid.Row="2" VerticalOptions="Fill" BackgroundColor="WhiteSmoke">
-            <StackLayout Padding="10,5,10,5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="10">
+            <StackLayout Padding="10,5,10,5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="8">
                 <Label Text="About the seller:" FontAttributes="Bold" FontSize="Small" TextColor="Black"/>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Image Source="{local:ImageResource  XamlTest.Images.ProfilePicture.png}" 
@@ -55,44 +74,34 @@
                     </StackLayout>
                 </StackLayout>
                 <Grid HorizontalOptions="FillAndExpand" HeightRequest="30" ColumnSpacing="20">
-                            <Button Grid.Row="0" Grid.Column="0" 
-                                    Text="More from Seller" 
-                                    FontSize="Small" HorizontalOptions="FillAndExpand" BackgroundColor="LightBlue" TextColor="White" VerticalOptions="Center" CornerRadius="12"/>
-                            <Button Grid.Row="0" Grid.Column="1" 
-                                    Text="Report" 
-                                    FontSize="Small" HorizontalOptions="FillAndExpand" BackgroundColor="LightCoral" TextColor="White" VerticalOptions="Center" CornerRadius="12"/>
+                    <Button Grid.Row="0" Grid.Column="0" Text="More from Seller" HorizontalOptions="FillAndExpand" BackgroundColor="LightBlue"/>
+                    <Button Grid.Row="0" Grid.Column="1" Text="Report" HorizontalOptions="FillAndExpand" BackgroundColor="LightCoral"/>
                 </Grid>
                 <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" Color="LightGray"/>
                 
                 <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <StackLayout  BackgroundColor="WhiteSmoke" Spacing="20">
+                    <StackLayout  BackgroundColor="WhiteSmoke" Spacing="10">
                         <StackLayout HorizontalOptions="End" Spacing="1">
-                            <Frame CornerRadius="10" HasShadow="false" BackgroundColor="Tan" Padding="8">
+                            <Frame BackgroundColor="Tan">
                                 <Label Text="I like blue, shall we be shoemates?" FontSize="12" TextColor="White"/>
                             </Frame>
                             <Label HorizontalOptions="End" Text="27.09.2018/11:43 am" FontSize="10" TextColor="Gray"/>
                         </StackLayout>
                         <StackLayout HorizontalOptions="Start" Spacing="1">
-                            <Frame CornerRadius="10" HasShadow="false" BackgroundColor="White" Padding="8">
+                            <Frame BackgroundColor="White">
                                 <Label Text="Good Idea:) alskdjf +9273473874" FontSize="12" TextColor="Black"/>
                             </Frame>
                             <Label HorizontalOptions="End" Text="27.09.2018/11:43 am" FontSize="10" TextColor="Gray"/>
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
-            
-            
             </StackLayout>
-            
-            
-
-                
         </StackLayout>
         
         <StackLayout Grid.Column="0" Grid.Row="3" VerticalOptions="End" Orientation="Horizontal" Padding="10,0,10,5" Spacing="5">
             <Image Source="{local:ImageResource  XamlTest.Images.Emoticon.png}"/>
             <Entry Placeholder="Write message..." FontSize="Micro" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-            <Button Text="Send" FontSize="Small" WidthRequest="80" HorizontalOptions="End" BackgroundColor="Teal" TextColor="White" VerticalOptions="Center" CornerRadius="12"/>
+            <Button Text="Send" WidthRequest="80" HorizontalOptions="End" BackgroundColor="Teal"/>
         </StackLayout>
     </Grid>
 

@@ -36,4 +36,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ButtonWithPadding.cs" />
+  </ItemGroup>
 </Project>
